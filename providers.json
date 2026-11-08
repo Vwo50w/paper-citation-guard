@@ -1,0 +1,236 @@
+{
+  "version": 1,
+  "updated": "2026-11",
+  "providers": [
+    {
+      "id": "openalex",
+      "name": "OpenAlex",
+      "scope": "综合，约 2.6 亿条，含 CrossRef/PubMed/arXiv/机构库",
+      "auth": "none",
+      "enabled": true,
+      "probe": "https://api.openalex.org/works?search=test&per-page=1",
+      "weight": 100,
+      "note": "覆盖面最大的单一免费索引；Elsevier/T&F 多数无摘要"
+    },
+    {
+      "id": "crossref",
+      "name": "CrossRef",
+      "scope": "约 1.5 亿 DOI 元数据",
+      "auth": "email-optional",
+      "configKey": "email",
+      "enabled": true,
+      "probe": "https://api.crossref.org/works?query=test&rows=1",
+      "weight": 90,
+      "note": "填 email 可进 polite pool，速度更稳"
+    },
+    {
+      "id": "europepmc",
+      "name": "Europe PMC",
+      "scope": "约 4400 万，含 PubMed/MEDLINE、PMC 全文、预印本、专利",
+      "auth": "none",
+      "enabled": true,
+      "probe": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=test&format=json&pageSize=1",
+      "weight": 85,
+      "note": "生物医学/生命科学首选，PubMed 连不上时的替身"
+    },
+    {
+      "id": "semanticscholar",
+      "name": "Semantic Scholar",
+      "scope": "约 2 亿，含摘要与引用关系",
+      "auth": "key",
+      "configKey": "semanticscholar.apiKey",
+      "enabled": true,
+      "probe": "https://api.semanticscholar.org/graph/v1/paper/search?query=test&limit=1",
+      "weight": 88,
+      "note": "无 key 常被 429；免费申请：https://www.semanticscholar.org/product/api"
+    },
+    {
+      "id": "arxiv",
+      "name": "arXiv",
+      "scope": "约 250 万预印本（数理、CS、AI）",
+      "auth": "none",
+      "enabled": true,
+      "probe": "https://export.arxiv.org/api/query?search_query=all:test&max_results=1",
+      "weight": 70,
+      "note": "非同行评议，引用时标 [EB/OL]"
+    },
+    {
+      "id": "doaj",
+      "name": "DOAJ",
+      "scope": "约 2 万种开放获取期刊",
+      "auth": "none",
+      "enabled": true,
+      "probe": "https://doaj.org/api/search/articles/test?pageSize=1",
+      "weight": 65,
+      "note": "只收 OA 刊；能补不少非 Elsevier 的英文刊"
+    },
+    {
+      "id": "openaire",
+      "name": "OpenAIRE",
+      "scope": "欧洲聚合器，含机构库、项目成果",
+      "auth": "none",
+      "enabled": true,
+      "probe": "https://api.openaire.eu/search/publications?title=test&size=1&format=json",
+      "weight": 60,
+      "note": "欧盟项目产出、机构仓储覆盖好"
+    },
+    {
+      "id": "datacite",
+      "name": "DataCite",
+      "scope": "数据集、部分预印本与学位论文的 DOI",
+      "auth": "none",
+      "enabled": true,
+      "probe": "https://api.datacite.org/dois?query=test&page[size]=1",
+      "weight": 40,
+      "note": "查数据论文、机构仓储用"
+    },
+    {
+      "id": "biorxiv",
+      "name": "bioRxiv / medRxiv",
+      "scope": "生命科学预印本",
+      "auth": "none",
+      "enabled": true,
+      "probe": "https://api.biorxiv.org/details/biorxiv/2024-01-01/2024-01-02/0",
+      "weight": 35,
+      "note": "接口只按日期区间列举，不支持关键词检索，故不作检索源"
+    },
+    {
+      "id": "pubmed",
+      "name": "PubMed (E-utilities)",
+      "scope": "约 3700 万生物医学文献",
+      "auth": "key-optional",
+      "configKey": "pubmed.apiKey",
+      "enabled": true,
+      "probe": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=test&retmode=json",
+      "weight": 80,
+      "note": "无 key 限 3 次/秒；key 免费：https://www.ncbi.nlm.nih.gov/account/"
+    },
+    {
+      "id": "unpaywall",
+      "name": "Unpaywall",
+      "scope": "OA 全文定位（按 DOI 查免费版本）",
+      "auth": "email",
+      "configKey": "email",
+      "enabled": true,
+      "probe": "https://api.unpaywall.org/v2/10.1038/nature12373?email={email}",
+      "weight": 50,
+      "note": "不是检索库，是「这个 DOI 有没有免费全文」的查询器"
+    },
+    {
+      "id": "core",
+      "name": "CORE",
+      "scope": "约 3 亿条开放获取记录（含全文）",
+      "auth": "key",
+      "configKey": "core.apiKey",
+      "enabled": true,
+      "probe": "https://api.core.ac.uk/v3/search/works?q=test&limit=1",
+      "weight": 75,
+      "note": "免费 key：https://core.ac.uk/services/api"
+    },
+    {
+      "id": "scopus",
+      "name": "Scopus (Elsevier)",
+      "scope": "约 9000 万，收录筛选严格",
+      "auth": "key",
+      "configKey": "scopus.apiKey",
+      "enabled": true,
+      "probe": "https://api.elsevier.com/content/search/scopus?query=test&count=1",
+      "weight": 95,
+      "note": "机构订阅；key 走 Elsevier Developer Portal"
+    },
+    {
+      "id": "sciencedirect",
+      "name": "ScienceDirect (Elsevier)",
+      "scope": "Elsevier 全文库",
+      "auth": "key",
+      "configKey": "sciencedirect.apiKey",
+      "enabled": true,
+      "probe": "https://api.elsevier.com/content/search/sciencedirect?query=test&count=1",
+      "weight": 85,
+      "note": "需机构订阅 + API key"
+    },
+    {
+      "id": "wos",
+      "name": "Web of Science",
+      "scope": "核心合集，收录筛选严格",
+      "auth": "key",
+      "configKey": "wos.apiKey",
+      "enabled": true,
+      "probe": "https://api.clarivate.com/apis/wos-starter/v1/documents?q=test&limit=1",
+      "weight": 95,
+      "note": "机构订阅；Starter API 需申请"
+    },
+    {
+      "id": "springer",
+      "name": "Springer Nature",
+      "scope": "Springer/Nature 期刊与图书",
+      "auth": "key",
+      "configKey": "springer.apiKey",
+      "enabled": true,
+      "probe": "https://api.springernature.com/meta/v2/json?q=test&p=1",
+      "weight": 70,
+      "note": "免费额度申请即可"
+    },
+    {
+      "id": "ieee",
+      "name": "IEEE Xplore",
+      "scope": "IEEE 期刊与会议",
+      "auth": "key",
+      "configKey": "ieee.apiKey",
+      "enabled": true,
+      "probe": "https://ieeexplore.ieee.org/rest/search",
+      "weight": 60,
+      "note": "无公开 REST API，需机构订阅或代理"
+    },
+    {
+      "id": "jstor",
+      "name": "JSTOR",
+      "scope": "人文社科过刊",
+      "auth": "none",
+      "enabled": false,
+      "probe": "https://www.jstor.org/action/doBasicSearch?Query=test",
+      "weight": 30,
+      "note": "无公开 API，仅网页，默认关闭"
+    },
+    {
+      "id": "cnki",
+      "name": "中国知网",
+      "scope": "中文期刊、学位论文、会议",
+      "auth": "none",
+      "enabled": true,
+      "probe": "https://www.cnki.com.cn/",
+      "weight": 100,
+      "note": "无公开检索接口，只能经百度/360 找落地页再抓页面；有并发限流"
+    },
+    {
+      "id": "wanfang",
+      "name": "万方数据",
+      "scope": "中文期刊、学位论文、会议",
+      "auth": "none",
+      "enabled": false,
+      "probe": "https://s.wanfangdata.com.cn/paper?q=test",
+      "weight": 70,
+      "note": "已试：前端渲染 + 动态 JS，无可用检索接口；只能用「枚举刊号抓目录」的办法替代"
+    },
+    {
+      "id": "cqvip",
+      "name": "维普",
+      "scope": "中文期刊",
+      "auth": "none",
+      "enabled": false,
+      "probe": "http://qikan.cqvip.com/",
+      "weight": 60,
+      "note": "已试：无公开检索接口，默认关闭"
+    },
+    {
+      "id": "ncpssd",
+      "name": "国家哲学社会科学文献中心",
+      "scope": "中文社科期刊全文",
+      "auth": "none",
+      "enabled": false,
+      "probe": "https://www.ncpssd.org/",
+      "weight": 55,
+      "note": "已试：非浏览器请求返回 403，默认关闭"
+    }
+  ]
+}

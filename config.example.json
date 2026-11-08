@@ -1,0 +1,14 @@
+{
+  "_说明": "复制为 config.json 后填写。email 填你的邮箱（CrossRef polite pool / Unpaywall 用）；apiKey 留空的库会被自动跳过。",
+  "email": "",
+  "providers": {
+    "semanticscholar": { "apiKey": "" },
+    "core": { "apiKey": "" },
+    "scopus": { "apiKey": "" },
+    "sciencedirect": { "apiKey": "" },
+    "wos": { "apiKey": "" },
+    "springer": { "apiKey": "" },
+    "ieee": { "apiKey": "" },
+    "pubmed": { "apiKey": "" }
+  }
+}
